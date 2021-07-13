@@ -1,0 +1,50 @@
+id, name,disabled,arriving_soon,arriving_time,image_src,rarity
+16000000, SHELLY,,,,../assets/brawler_portraits/16000000.png,common
+16000001, COLT,,,,../assets/brawler_portraits/16000001.png,common
+16000002, BULL,,,,../assets/brawler_portraits/16000002.png,common
+16000003, BROCK,,,,../assets/brawler_portraits/16000003.png,common
+16000004, RICO,,,,../assets/brawler_portraits/16000004.png,super_rare
+16000005, SPIKE,,,,../assets/brawler_portraits/16000005.png,legendary
+16000006, BARLEY,,,,../assets/brawler_portraits/16000006.png,rare
+16000007, JESSIE,,,,../assets/brawler_portraits/16000007.png,common
+16000008, NITA,,,,../assets/brawler_portraits/16000008.png,common
+16000009, DYNAMIKE,,,,../assets/brawler_portraits/16000009.png,common
+16000010, EL PRIMO,,,,../assets/brawler_portraits/16000010.png,rare
+16000011, MORTIS,,,,../assets/brawler_portraits/16000011.png,mythic
+16000012, CROW,,,,../assets/brawler_portraits/16000012.png,legendary
+16000013, POCO,,,,../assets/brawler_portraits/16000013.png,rare
+16000014, BO,,,,../assets/brawler_portraits/16000014.png,common
+16000015, PIPER,,,,../assets/brawler_portraits/16000015.png,epic
+16000016, PAM,,,,../assets/brawler_portraits/16000016.png,epic
+16000017, TARA,,,,../assets/brawler_portraits/16000017.png,mythic
+16000018, DARRYL,,,,../assets/brawler_portraits/16000018.png,super_rare
+16000019, PENNY,,,,../assets/brawler_portraits/16000019.png,super_rare
+16000020, FRANK,,,,../assets/brawler_portraits/16000020.png,epic
+16000021, GENE,,,,../assets/brawler_portraits/16000021.png,mythic
+16000022, TICK,,,,../assets/brawler_portraits/16000022.png,common
+16000023, LEON,,,,../assets/brawler_portraits/16000023.png,legendary
+16000024, ROSA,,,,../assets/brawler_portraits/16000024.png,rare
+16000025, CARL,,,,../assets/brawler_portraits/16000025.png,super_rare
+16000026, BIBI,,,,../assets/brawler_portraits/16000026.png,epic
+16000027, 8-BIT,,,,../assets/brawler_portraits/16000027.png,common
+16000028, SANDY,,,,../assets/brawler_portraits/16000028.png,legendary
+16000029, BEA,,,,../assets/brawler_portraits/16000029.png,epic
+16000030, EMZ,,,,../assets/brawler_portraits/16000030.png,common
+16000031, MR. P,,,,../assets/brawler_portraits/16000031.png,mythic
+16000032, MAX,,,,../assets/brawler_portraits/16000032.png,mythic
+16000034, JACKY,,,,../assets/brawler_portraits/16000034.png,super_rare
+16000035, GALE,,,,../assets/brawler_portraits/16000035.png,chromatic
+16000036, NANI,,,,../assets/brawler_portraits/16000036.png,epic
+16000037, SPROUT,,,,../assets/brawler_portraits/16000037.png,mythic
+16000038, SURGE,,,,../assets/brawler_portraits/16000038.png,chromatic
+16000039, COLETTE,,,,../assets/brawler_portraits/16000039.png,chromatic
+16000040, AMBER,,,,../assets/brawler_portraits/16000040.png,legendary
+16000041, LOU,,,,../assets/brawler_portraits/16000041.png,chromatic
+16000042, BYRON,,,,../assets/brawler_portraits/16000042.png,mythic
+16000043, EDGAR,,,,../assets/brawler_portraits/16000043.png,epic
+16000044, COLONEL RUFFS,,,,../assets/brawler_portraits/16000044.png,chromatic
+16000045, STU,,,,../assets/brawler_portraits/16000045.png,common
+16000046, BELLE,,,,../assets/brawler_portraits/16000046.png,chromatic
+16000047, SQUEAK,,,,../assets/brawler_portraits/16000047.png,mythic
+16000049, BUZZ,,,,../assets/brawler_portraits/16000049.png,chromatic
+16000050, GRIFF,,TRUE,7/16/2021 00:00:00,../assets/brawler_portraits/16000050.png,epic

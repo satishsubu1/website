@@ -1,0 +1,8 @@
+rarity, background,isBgImg,value
+common,#B9EAFF,,0
+rare,#68FD58,,1
+super_rare,#5AB3FF,,2
+epic,#D850FF,,3
+mythic,#FE5E72,,4
+legendary,#FFF11E,,5
+chromatic,../assets/images/chromatic_background.svg,TRUE,6
