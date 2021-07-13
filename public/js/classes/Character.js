@@ -32,7 +32,7 @@ export class Character {
         }
 
         this._imageElement.element.style.backgroundImage = `url('${this._image_src}')`;
-        this._nameElement.textContent = this.name.toUpperCase();
+        this._nameElement.text = this.name.toUpperCase();
     }
 
     create(){

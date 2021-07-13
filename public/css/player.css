@@ -18,13 +18,34 @@ html, body{
     text-shadow: var(--txsh);
     font-size:20px;
 }
-
+.sort-container{
+    float:right;
+}
+.sort-label{
+    font-size: 20px;
+}
+.sort{
+    outline: none;
+    border: 2px #333 solid;
+    font-family: 'lilita_oneregular';
+    font-size: 18px;
+    text-transform: uppercase;
+    text-align: center;
+    width: min-content;
+}
+.sort-option{
+    border: none;
+    outline: none;
+    width: fit-content;
+    text-align: center;
+    border-bottom: 2px #333 solid;
+}
 /*characters*/
 .characters{
     padding: 0;
     margin: 0 20px;
 }
-.characters-unlocked-container, .characters-remaining-container, .characters-arriving-container{
+.characters-unlocked-container, .characters-remaining-container, .characters-arriving-container, .characters-all-container{
     margin: 20px 0;
 }
 .characters-title, .characters-unlocked-title, .characters-remaining-title, .characters-arriving-title{

@@ -20,8 +20,15 @@ export class Characters {
 
         //characters DOM element
         this._element = new Element({ type: "div", class: "characters" });
-        this._charactersTitle = new Element({ type: "div", class: "characters-title", parent: this._element });
-        this._charactersElement = new Element({ type: "div", class: "characters-all", parent: this._element });
+        this._sortElement = new Element({ type: "div", class: "sort-container", parent: this._element});
+        this._sortLabelElement = new Element({ type: "label", text: "Sort By:", attributes: {class: "sort-label", for: "sort"}, parent: this._sortElement});
+        this._sortSelectElement = new Element({ type: "select", attributes: {class: "sort", id: "sort", name: "sort"}, parent: this._sortElement});
+        this._rarityOption = new Element({ type: "option", text: "Rarity", attributes: {value: "rarity", class: "sort-option"}, parent: this._sortSelectElement});
+        this._rarityDescOption = new Element({ type: "option", text: "Rarity Desc", attributes: {value: "rarityDesc", class: "sort-option"}, parent: this._sortSelectElement});
+        
+        this._allCharactersElement = new Element({ type: "div", class: "characters-all-container", parent: this.element });
+        this._charactersTitleElement = new Element({ type: "div", class: "characters-title", parent: this._allCharactersElement });
+        this._charactersElement = new Element({ type: "div", class: "characters-all", parent: this._allCharactersElement });
     }
 
     load() {
@@ -51,6 +58,28 @@ export class Characters {
         });
         this.removeDisabled();
         this.calculateTotals();
+        this.addSortListener();
+    }
+
+    permormSort(val){
+        switch (val) {
+            case "rarity":
+                this.sortByRarity();
+                this.addToDOM();
+                break;
+            case "rarityDesc":
+                this.sortByRarityDesc();
+                this.addToDOM();
+                break;
+            default:
+                break;
+        }
+    }
+
+    addSortListener(){
+        this._sortSelectElement.element.addEventListener("input", eve => {
+            this.permormSort(this._sortSelectElement.element.value);
+        });
     }
     idSort(a, b){
         if (a.id < b.id) {
@@ -109,8 +138,6 @@ export class Characters {
         this._characters = this._characters.sort(this.rarityDescSort);
     }
 
-    
-
     removeDisabled() {
         this._characters = this._characters.filter(val => !(val.disabled == true));
     }
@@ -125,7 +152,7 @@ export class Characters {
 
     addTitles() {
         if (this._characters.length !== 0) {
-            this._charactersTitle.text = `Brawlers (${this._total})`;
+            this._charactersTitleElement.text = `Brawlers (${this._total})`;
         }
     }
 

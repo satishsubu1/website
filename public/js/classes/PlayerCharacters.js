@@ -28,15 +28,19 @@ export class PlayerCharacters extends Characters {
         this._totalPossible;
 
         //characters DOM
-        this._unlockedCharactersElement = new Element({type: "div", class: "characters-unlocked-container", parent: this.element});
-        this._remainingCharactersElement = new Element({type: "div", class: "characters-remaining-container", parent: this.element});
-        this._arrivingCharactersElement = new Element({type: "div", class: "characters-arriving-container", parent: this.element});
-        this._unlockedTitleElement = new Element({type: "div", class: "characters-unlocked-title", parent: this._unlockedCharactersElement});
-        this._remainingTitleElement = new Element({type: "div", class: "characters-remaining-title", parent: this._remainingCharactersElement});
-        this._arrivingTitleElement = new Element({type: "div", class: "characters-arriving-title", parent: this._arrivingCharactersElement});
-        this._unlockedElement = new Element({type: "div", class: "characters-unlocked", parent: this._unlockedCharactersElement});
-        this._remainingElement = new Element({type: "div", class: "characters-remaining", parent: this._remainingCharactersElement});
-        this._arrivingElement = new Element({type: "div", class: "characters-arriving", parent: this._arrivingCharactersElement});
+        this._trophiesOption = new Element({ type: "option", text: "Trophies", attributes: { value: "trophies", class: "sort-option" }, parent: this._sortSelectElement });
+        this._trophiesDescOption = new Element({ type: "option", text: "Trophies Desc", attributes: { value: "trophiesDesc", class: "sort-option" }, parent: this._sortSelectElement });
+        this._highestTrophiesOption = new Element({ type: "option", text: "Highest Trophies", attributes: { value: "highestTrophies", class: "sort-option" }, parent: this._sortSelectElement });
+
+        this._unlockedCharactersElement = new Element({ type: "div", class: "characters-unlocked-container", parent: this.element });
+        this._remainingCharactersElement = new Element({ type: "div", class: "characters-remaining-container", parent: this.element });
+        this._arrivingCharactersElement = new Element({ type: "div", class: "characters-arriving-container", parent: this.element });
+        this._unlockedTitleElement = new Element({ type: "div", class: "characters-unlocked-title", parent: this._unlockedCharactersElement });
+        this._remainingTitleElement = new Element({ type: "div", class: "characters-remaining-title", parent: this._remainingCharactersElement });
+        this._arrivingTitleElement = new Element({ type: "div", class: "characters-arriving-title", parent: this._arrivingCharactersElement });
+        this._unlockedElement = new Element({ type: "div", class: "characters-unlocked", parent: this._unlockedCharactersElement });
+        this._remainingElement = new Element({ type: "div", class: "characters-remaining", parent: this._remainingCharactersElement });
+        this._arrivingElement = new Element({ type: "div", class: "characters-arriving", parent: this._arrivingCharactersElement });
     }
 
     load() {
@@ -48,6 +52,8 @@ export class PlayerCharacters extends Characters {
 
     addToDOM() {
         this.addTitles();
+        this._allCharactersElement.element.remove();//remove the element created by super.addToDOM()
+
         this._unlockedCharacters.forEach(character => {
             this._unlockedElement.append(character.create());
         });
@@ -61,15 +67,15 @@ export class PlayerCharacters extends Characters {
     }
 
     addTitles() {
-        if(this._unlockedCharacters.length !== 0){
+        if (this._unlockedCharacters.length !== 0) {
             this._unlockedTitleElement.text = `Unlocked Brawlers (${this._totalUnlocked}/ ${this._totalPossible})`;
         }
 
-        if(this._remainingCharacters.length !== 0){
+        if (this._remainingCharacters.length !== 0) {
             this._remainingTitleElement.text = `Remaining Brawlers (${this._totalRemaining})`;
         }
 
-        if(this._arrivingCharacters.length !== 0){
+        if (this._arrivingCharacters.length !== 0) {
             this._arrivingTitleElement.text = `Arriving Brawlers (${this._totalArriving})`;
         }
     }
@@ -91,25 +97,94 @@ export class PlayerCharacters extends Characters {
         this.arrivingCheck();
         this.calculateTotals();
     }
-    sortById(){
+    permormSort(val) {
+        super.permormSort(val);
+        switch (val) {
+            case "trophies":
+                this.sortByTrophies();
+                this.addToDOM();
+                break;
+            case "trophiesDesc":
+                this.sortByTrophiesDesc();
+                this.addToDOM();
+                break;
+            case "highestTrophies":
+                this.sortByHighestTrophies();
+                this.addToDOM();
+                break;
+            default:
+                break;
+        }
+    }
+    trophiesSort(a, b) {
+        if (a.trophies < b.trophies) {
+            return 1;
+        }
+        if (a.trophies > b.trophies) {
+            return -1;
+        }
+        return 0;
+    }
+    trophiesDescSort(a, b) {
+        if (a.trophies < b.trophies) {
+            return -1;
+        }
+        if (a.trophies > b.trophies) {
+            return 1;
+        }
+        return 0;
+    }
+
+    highestTrophiesSort(a, b) {
+        if (a.highestTrophies < b.highestTrophies) {
+            return 1;
+        }
+        if (a.highestTrophies > b.highestTrophies) {
+            return -1;
+        }
+        return 0;
+    }
+
+    sortById() {
         super.sortById();
         this._unlockedCharacters = this._unlockedCharacters.sort(this.idSort);
         this._remainingCharacters = this._remainingCharacters.sort(this.idSort);
         this._arrivingCharacters = this._arrivingCharacters.sort(this.idSort);
     }
 
-    sortByRarity(){
+    sortByRarity() {
         super.sortByRarity();
         this._unlockedCharacters = this._unlockedCharacters.sort(this.raritySort);
         this._remainingCharacters = this._remainingCharacters.sort(this.raritySort);
         this._arrivingCharacters = this._arrivingCharacters.sort(this.raritySort);
     }
 
-    sortByRarityDesc(){
+    sortByRarityDesc() {
         super.sortByRarityDesc();
         this._unlockedCharacters = this._unlockedCharacters.sort(this.rarityDescSort);
         this._remainingCharacters = this._remainingCharacters.sort(this.rarityDescSort);
         this._arrivingCharacters = this._arrivingCharacters.sort(this.rarityDescSort);
+    }
+
+    sortByTrophies() {
+        this.sortById();
+        this._unlockedCharacters = this._unlockedCharacters.sort(this.trophiesSort);
+        this._remainingCharacters = this._remainingCharacters.sort(this.trophiesSort);
+        this._arrivingCharacters = this._arrivingCharacters.sort(this.trophiesSort);
+    }
+
+    sortByTrophiesDesc() {
+        this.sortById();
+        this._unlockedCharacters = this._unlockedCharacters.sort(this.trophiesDescSort);
+        this._remainingCharacters = this._remainingCharacters.sort(this.trophiesDescSort);
+        this._arrivingCharacters = this._arrivingCharacters.sort(this.trophiesDescSort);
+    }
+
+    sortByHighestTrophies() {
+        this.sortById();
+        this._unlockedCharacters = this._unlockedCharacters.sort(this.highestTrophiesSort);
+        this._remainingCharacters = this._remainingCharacters.sort(this.highestTrophiesSort);
+        this._arrivingCharacters = this._arrivingCharacters.sort(this.highestTrophiesSort);
     }
 
     arrivingCheck() {
@@ -172,11 +247,4 @@ async function loadPlayer(tag) {
     })
 }
 
- loadPlayer("#JYJGCL");
-
- document.addEventListener("click", eve => {
-     console.log("click")
-    characters.sortByRarityDesc();
-    characters.addToDOM();
- })
- console.log(characters)
+loadPlayer("#82JJVPRUL");
