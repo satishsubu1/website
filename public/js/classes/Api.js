@@ -22,7 +22,7 @@ export class Api {
                 }
             }).then(response => {
                 if (response.status !== 200) {
-                    return reject({error: true, response});
+                    return reject({ error: true, response });
                 } else {
                     return response.json();
                 }
@@ -36,7 +36,6 @@ export class Api {
         });
         return this._promise;
     }
-
     parse() {
         this._response = JSON.parse(this._response);
         if (this._response instanceof Object) {
@@ -45,11 +44,11 @@ export class Api {
             this.parse();
         }
     }
-    
+
     /**
      * @returns A promise after a call to the server was made
      */
-    loaded(){
+    loaded() {
         return this._promise;
     }
     get url() {

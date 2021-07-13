@@ -35,6 +35,8 @@ export class PlayerCharacter extends Character {
         this._rankTitleElement = new Element({type: "div", class: "rank-title", parent: this._rankElement});
         this._rankNumberElement = new Element({type: "div", class: "rank-number", parent: this._rankElement});
         this._rankImgElement = new Element({type: "div", class: "rank-img", parent: this._rankElement});
+
+        this._powerElement = new Element({type: "div", class: "power", parent: this._secondElement});
     }
 
     populateDOM(){
@@ -52,6 +54,7 @@ export class PlayerCharacter extends Character {
         
         this._rankTitleElement.text = "RANK";
         this._rankNumberElement.text = this.rank;
+        this._powerElement.text = `POWER ${this.power}`;
     }
 
     

@@ -30,6 +30,7 @@ export class PlayerCharacters extends Characters {
         //characters DOM
         this._trophiesOption = new Element({ type: "option", text: "Trophies", attributes: { value: "trophies", class: "sort-option" }, parent: this._sortSelectElement });
         this._trophiesDescOption = new Element({ type: "option", text: "Trophies Desc", attributes: { value: "trophiesDesc", class: "sort-option" }, parent: this._sortSelectElement });
+        this._powerOption = new Element({ type: "option", text: "Power", attributes: { value: "power", class: "sort-option" }, parent: this._sortSelectElement });
         this._highestTrophiesOption = new Element({ type: "option", text: "Highest Trophies", attributes: { value: "highestTrophies", class: "sort-option" }, parent: this._sortSelectElement });
 
         this._unlockedCharactersElement = new Element({ type: "div", class: "characters-unlocked-container", parent: this.element });
@@ -108,6 +109,10 @@ export class PlayerCharacters extends Characters {
                 this.sortByTrophiesDesc();
                 this.addToDOM();
                 break;
+            case "power":
+                this.sortByPower();
+                this.addToDOM();
+                break;
             case "highestTrophies":
                 this.sortByHighestTrophies();
                 this.addToDOM();
@@ -131,6 +136,16 @@ export class PlayerCharacters extends Characters {
         }
         if (a.trophies > b.trophies) {
             return 1;
+        }
+        return 0;
+    }
+    
+    powerSort(a, b){
+        if (a.power < b.power) {
+            return 1;
+        }
+        if (a.power > b.power) {
+            return -1;
         }
         return 0;
     }
@@ -169,22 +184,21 @@ export class PlayerCharacters extends Characters {
     sortByTrophies() {
         this.sortById();
         this._unlockedCharacters = this._unlockedCharacters.sort(this.trophiesSort);
-        this._remainingCharacters = this._remainingCharacters.sort(this.trophiesSort);
-        this._arrivingCharacters = this._arrivingCharacters.sort(this.trophiesSort);
     }
 
     sortByTrophiesDesc() {
         this.sortById();
         this._unlockedCharacters = this._unlockedCharacters.sort(this.trophiesDescSort);
-        this._remainingCharacters = this._remainingCharacters.sort(this.trophiesDescSort);
-        this._arrivingCharacters = this._arrivingCharacters.sort(this.trophiesDescSort);
+    }
+
+    sortByPower(){
+        this.sortById();
+        this._unlockedCharacters = this._unlockedCharacters.sort(this.powerSort);
     }
 
     sortByHighestTrophies() {
         this.sortById();
         this._unlockedCharacters = this._unlockedCharacters.sort(this.highestTrophiesSort);
-        this._remainingCharacters = this._remainingCharacters.sort(this.highestTrophiesSort);
-        this._arrivingCharacters = this._arrivingCharacters.sort(this.highestTrophiesSort);
     }
 
     arrivingCheck() {
@@ -247,4 +261,4 @@ async function loadPlayer(tag) {
     })
 }
 
-loadPlayer("#82JJVPRUL");
+loadPlayer("#200YVCR0C");
