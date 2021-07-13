@@ -93,7 +93,7 @@ export class PlayerCharacters extends Characters {
     }
     arrivingCheck() {
         //need to loop backwards (When removing element the loop skips over an element)
-        for (var i = this._remainingCharacters.length - 1; i >= 0; i--) {
+        for (let i = this._remainingCharacters.length - 1; i >= 0; i--) {
             let character = this._remainingCharacters[i];
             if (character.arriving_soon) {
                 this._arrivingCharacters.push(character);

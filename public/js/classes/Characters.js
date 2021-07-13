@@ -49,18 +49,12 @@ export class Characters {
             let character = new Character(characterObj);
             this._characters.push(character);
         });
-
-        this.disabledCheck();
+        this.removeDisabled();
         this.calculateTotals();
     }
-    disabledCheck() {
-        //need to loop backwards (When removing element the loop skips over an element)
-        for (var i = this._characters.length - 1; i >= 0; i--) {
-            let character = this._characters[i];
-            if (character.disabled) {
-                this._characters.remove(character);
-            }
-        }
+    
+    removeDisabled() {
+        this._characters = this._characters.filter(val => !(val.disabled == true));
     }
     
 
