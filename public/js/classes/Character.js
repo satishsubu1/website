@@ -90,4 +90,11 @@ export class Character {
         this._element = element;
     }
 
+    get rarity(){
+        return this._rarity;
+    }
+    set rarity(rarity){
+        this._rarity = rarity;
+    }
+
 }

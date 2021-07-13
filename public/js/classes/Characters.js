@@ -52,7 +52,65 @@ export class Characters {
         this.removeDisabled();
         this.calculateTotals();
     }
+    idSort(a, b){
+        if (a.id < b.id) {
+            return -1;
+        }
+        if (a.id > b.id) {
+            return 1;
+        }
+        return 0;
+    }
     
+    idDescSort(a, b){
+        if (a.id < b.id) {
+            return 1;
+        }
+        if (a.id > b.id) {
+            return -1;
+        }
+        return 0;
+    }
+    raritySort(a, b){
+        if (a.rarity.value < b.rarity.value) {
+            return -1;
+        }
+        if (a.rarity.value > b.rarity.value) {
+            return 1;
+        }
+        return 0;
+    }
+
+    rarityDescSort(a, b){
+        if (a.rarity.value < b.rarity.value) {
+            return 1;
+        }
+        if (a.rarity.value > b.rarity.value) {
+            return -1;
+        }
+        return 0;
+    }
+
+    sortById(){
+        this._characters = this._characters.sort(this.idSort);
+    }
+
+    sortByIdDesc(){
+        this._characters = this._characters.sort(this.idDescSort);
+    }
+
+    sortByRarity(){
+        this.sortById();
+        this._characters = this._characters.sort(this.raritySort);
+    }
+
+    sortByRarityDesc(){
+        this.sortById();
+        this._characters = this._characters.sort(this.rarityDescSort);
+    }
+
+    
+
     removeDisabled() {
         this._characters = this._characters.filter(val => !(val.disabled == true));
     }

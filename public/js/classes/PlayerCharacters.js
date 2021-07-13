@@ -91,6 +91,27 @@ export class PlayerCharacters extends Characters {
         this.arrivingCheck();
         this.calculateTotals();
     }
+    sortById(){
+        super.sortById();
+        this._unlockedCharacters = this._unlockedCharacters.sort(this.idSort);
+        this._remainingCharacters = this._remainingCharacters.sort(this.idSort);
+        this._arrivingCharacters = this._arrivingCharacters.sort(this.idSort);
+    }
+
+    sortByRarity(){
+        super.sortByRarity();
+        this._unlockedCharacters = this._unlockedCharacters.sort(this.raritySort);
+        this._remainingCharacters = this._remainingCharacters.sort(this.raritySort);
+        this._arrivingCharacters = this._arrivingCharacters.sort(this.raritySort);
+    }
+
+    sortByRarityDesc(){
+        super.sortByRarityDesc();
+        this._unlockedCharacters = this._unlockedCharacters.sort(this.rarityDescSort);
+        this._remainingCharacters = this._remainingCharacters.sort(this.rarityDescSort);
+        this._arrivingCharacters = this._arrivingCharacters.sort(this.rarityDescSort);
+    }
+
     arrivingCheck() {
         //need to loop backwards (When removing element the loop skips over an element)
         for (let i = this._remainingCharacters.length - 1; i >= 0; i--) {
@@ -145,6 +166,7 @@ async function loadPlayer(tag) {
     //can only run these characters methods after the data is received from the server
     await characters.loaded().then(() => {
         characters.populateArrays();
+        characters.sortByRarity();
         characters.addToDOM();
         document.body.append(characters.element.element);
     })
@@ -152,4 +174,9 @@ async function loadPlayer(tag) {
 
  loadPlayer("#JYJGCL");
 
+ document.addEventListener("click", eve => {
+     console.log("click")
+    characters.sortByRarityDesc();
+    characters.addToDOM();
+ })
  console.log(characters)
