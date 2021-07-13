@@ -1,2 +1,2 @@
-#Stats Website
-This is the first readme file.
+To get started change the "dotenv" file name to ".env" and add your environment variables.
+Port can be 3000
