@@ -47,4 +47,4 @@ id, name,disabled,arriving_soon,arriving_time,image_src,rarity
 16000046, BELLE,,,,../assets/brawler_portraits/16000046.png,chromatic
 16000047, SQUEAK,,,,../assets/brawler_portraits/16000047.png,mythic
 16000049, BUZZ,,,,../assets/brawler_portraits/16000049.png,chromatic
-16000050, GRIFF,,TRUE,7/16/2021 00:00:00,../assets/brawler_portraits/16000050.png,epic
+16000050, GRIFF,,TRUE,7/16/2021 0:00,../assets/brawler_portraits/16000050.png,epic

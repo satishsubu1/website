@@ -240,25 +240,29 @@ export class PlayerCharacters extends Characters {
     }
 }
 
-const characters = new PlayerCharacters();
-characters.load();
+
+
+// const characters = new PlayerCharacters();
+// characters.load();
 
 
 
-async function loadPlayer(tag) {
-    tag = tag.replace("#", "");
-    const player = new Api(`/api/player/${tag}`);
-    const data = await player.get();
+// async function loadPlayer(tag) {
+//     tag = tag.replace("#", "");
+//     const player = new Api(`/api/player/${tag}`);
+//     const data = await player.get();
 
-    const characterObj = await data.brawlers;
-    characters.paramObj = await characterObj;
-    //can only run these characters methods after the data is received from the server
-    await characters.loaded().then(() => {
-        characters.populateArrays();
-        characters.sortByRarity();
-        characters.addToDOM();
-        document.body.append(characters.element.element);
-    })
-}
+//     console.log(data);
+//     const characterObj = await data.brawlers;
+//     characters.paramObj = await characterObj;
+//     //can only run these characters methods after the data is received from the server
+//     await characters.loaded().then(() => {
+//         characters.populateArrays();
+//         characters.sortByRarity();
+//         characters.addToDOM();
+//         document.body.append(characters.element.element);
+//     })
+// }
 
-loadPlayer("#200YVCR0C");
+// loadPlayer("#82JJVPRUL");
+// // // 9YVLJU9RR
