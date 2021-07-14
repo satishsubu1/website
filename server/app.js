@@ -18,7 +18,7 @@ app.use(express.static(path.join(__dirname, '../public'), { extensions: ['html',
 //serves when the client requests for player information
 app.get("/api/player/:tag", (request, response) => {
     let tag = request.params.tag;
-    
+
     const url = `https://api.brawlstars.com/v1/players/%23${tag}`;
     const api = new API(url);
 

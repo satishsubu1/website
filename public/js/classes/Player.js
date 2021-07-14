@@ -35,6 +35,7 @@ export class Player {
     }
     load() {
         this._characters = new PlayerCharacters();
+
         return new Promise((resolve, reject) => {
             this._api.get().catch(err => {
                 return reject({
@@ -88,12 +89,12 @@ export class Player {
 
 }
 
-let player = new Player('#82JJVPRUL');
+// let player = new Player('#82JJVPRUL');
 
-player.load().then(() => {
-    player.populate();
-    player.addToDOM();
-}).catch(err => {
-    console.log(err);
-    alert(err.desc);
-})
+// player.load().then(() => {
+//     player.populate();
+//     player.addToDOM();
+// }).catch(err => {
+//     console.log(err);
+//     alert(err.desc);
+// })
