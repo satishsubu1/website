@@ -13,7 +13,7 @@ export class PlayerCharacters extends Characters {
         super();
         this._paramObj = characters;
 
-        this._rankApi = new Api("/api/csv/ranks");
+        this._rankApi = new Api("/api/csv/rank");
         this._milestonesApi = new Api("/api/csv/csv_logic/milestones");
 
 
@@ -46,9 +46,25 @@ export class PlayerCharacters extends Characters {
 
     load() {
         super.load();
-        this._promises.push(this._rankApi.get());
-        this._promises.push(this._milestonesApi.get());
-        return Promise.all(this._promises);
+        return new Promise((resolve, reject) => {
+            let errObj = {
+                error: true,
+                place: 'characters',
+                desc: "Files were not loaded!"
+            };
+            this._rankApi.get().catch(err => {
+                errObj.response = err.response;
+                return reject(errObj)
+            });
+            this._promises.push(this._rankApi.promise);
+            this._milestonesApi.get().catch(err => {
+                errObj.response = err.response;
+                return reject(errObj)
+            });
+            this._promises.push(this._milestonesApi.promise);
+
+            Promise.all(this._promises).then(data => resolve(data));
+        });
     }
 
     addToDOM() {
@@ -139,8 +155,8 @@ export class PlayerCharacters extends Characters {
         }
         return 0;
     }
-    
-    powerSort(a, b){
+
+    powerSort(a, b) {
         if (a.power < b.power) {
             return 1;
         }
@@ -191,7 +207,7 @@ export class PlayerCharacters extends Characters {
         this._unlockedCharacters = this._unlockedCharacters.sort(this.trophiesDescSort);
     }
 
-    sortByPower(){
+    sortByPower() {
         this.sortById();
         this._unlockedCharacters = this._unlockedCharacters.sort(this.powerSort);
     }
@@ -239,30 +255,3 @@ export class PlayerCharacters extends Characters {
         this._paramObj = obj;
     }
 }
-
-
-
-// const characters = new PlayerCharacters();
-// characters.load();
-
-
-
-// async function loadPlayer(tag) {
-//     tag = tag.replace("#", "");
-//     const player = new Api(`/api/player/${tag}`);
-//     const data = await player.get();
-
-//     console.log(data);
-//     const characterObj = await data.brawlers;
-//     characters.paramObj = await characterObj;
-//     //can only run these characters methods after the data is received from the server
-//     await characters.loaded().then(() => {
-//         characters.populateArrays();
-//         characters.sortByRarity();
-//         characters.addToDOM();
-//         document.body.append(characters.element.element);
-//     })
-// }
-
-// loadPlayer("#82JJVPRUL");
-// // // 9YVLJU9RR

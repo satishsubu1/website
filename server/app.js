@@ -25,12 +25,12 @@ app.get("/api/player/:tag", (request, response) => {
     api.postData().then((data) => {
         if (data.reason) {
             if (data.reason == "notFound") {
-                response.json({
+                response.status(404).json({
                     error: "true",
-                    reason: "notFound"
+                    reason: data.reason
                 });
             } else {
-                response.json({
+                response.status(429).json({
                     error: "true",
                     reason: data.reason
                 });

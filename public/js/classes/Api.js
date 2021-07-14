@@ -37,10 +37,10 @@ export class Api {
         return this._promise;
     }
     parse() {
-        this._response = JSON.parse(this._response);
         if (this._response instanceof Object) {
             return this._response;
         } else {
+            this._response = JSON.parse(this._response);
             this.parse();
         }
     }
